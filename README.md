@@ -1,14 +1,14 @@
-node-local-coredns
+# node-local-coredns
 
 node-local-coredns是一个dns caching agent，并以daemonset的方式运行在集群中的节点上。节点上的pod会直接查询node-local-coredns拿到dns解析结果，以此避免iptables DNAT和链路跟踪conntrack，如果cache没有命中，node-local-coredns再进一步查询集群中的kube-dns。
 
-动机
+#### 动机
 
 参考：https://kubernetes.io/docs/tasks/administer-cluster/nodelocaldns/#motivation
 
 其中的部分DNS查询延迟的问题可以参考：https://tencentcloudcontainerteam.github.io/tke-handbook/damn/dns-lookup-delay.html
 
-实现细节
+#### 实现细节
 
 设计的目标是不修改节点上的kubelet参数，具体是指--cluster-dns参数，当节点上有或者没有运行dns cache agent都将不会影响节点上的dns查询。
 
