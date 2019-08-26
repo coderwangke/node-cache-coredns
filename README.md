@@ -1,6 +1,7 @@
 # node-local-coredns
 
 node-local-coredns是一个dns caching agent，并以daemonset的方式运行在集群中的节点上。节点上的pod会直接查询node-local-coredns拿到dns解析结果，以此避免iptables DNAT和链路跟踪conntrack，如果cache没有命中，node-local-coredns再进一步查询集群中的kube-dns。
+补充：目前只支持iptables模式，暂不支持ipvs模式
 
 #### 动机
 
